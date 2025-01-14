@@ -1,0 +1,21 @@
+@use 'variables.scss' as *;
+@use 'fonts.scss' as *;
+
+@mixin mobile {
+    @media (min-width: $mobile-breakpoint) {
+      @content;
+    }
+  }
+  
+  @mixin tablet {
+    @media (min-width: $tablet-breakpoint) {
+      @content;
+    }
+  }
+
+  @mixin desktop {
+     @media (min-width: $desktop-breakpoint) and (max-width: 1920px) {
+        @content
+     }
+  
+}
