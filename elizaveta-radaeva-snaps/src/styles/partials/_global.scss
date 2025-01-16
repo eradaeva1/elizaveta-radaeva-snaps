@@ -37,6 +37,10 @@ body {
   @include tablet {
     padding: 0 1.5rem;
   }
+  &__right {
+    display: flex;
+    align-items: center;
+  }
 
   &__logo {
     display: flex;
@@ -64,6 +68,7 @@ body {
     background-color: $pistachio;
     border: 2px solid $forest-green;
     padding: 0.5rem 1rem;
+    border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
 
     @include tablet {
       font-size: 1.5rem;
