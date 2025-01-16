@@ -1,0 +1,39 @@
+@import url(/src/assets/fonts/Newsreader-Regular.woff);
+@import url(/src/assets/fonts/Newsreader-Light.woff);
+@import url(/src/assets/fonts/Newsreader-LightItalic.woff);
+@import url(/src/assets/fonts/Outfit-Light.woff);
+@import url(/src/assets/fonts/Outfit-Medium.woff);
+
+@font-face {
+    font-family: 'Newsreader','Times New Roman', Times, serif;
+    src: url('/src/assets/fonts/Newsreader-Regular.woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Newsreader','Times New Roman', Times, serif;
+    src: url('/src/assets/fonts/Newsreader-Light.woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Newsreader','Times New Roman', Times, serif;
+    src: url('/src/assets/fonts/Newsreader-LightItalic.woff');
+    font-weight: 300;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Outfit',Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    src: url('/src/assets/fonts/Outfit-Light.woff');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Outfit', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    src: url('/src/assets/fonts/Outfit-Medium.woff');
+    font-weight: 500;
+    font-style: normal;
+}
+

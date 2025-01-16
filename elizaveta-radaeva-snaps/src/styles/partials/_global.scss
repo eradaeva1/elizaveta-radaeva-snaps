@@ -1,6 +1,6 @@
-@use 'variables.scss' as *;
-@use 'mixins.scss' as *;
-@use 'fonts.scss' as *;
+@use "variables.scss" as *;
+@use "mixins.scss" as *;
+@use "fonts.scss" as *;
 
 *,
 *::before,
@@ -19,4 +19,55 @@ body {
   padding: 0;
   display: flex;
   flex-direction: column;
+  
+}
+
+// header {
+//     display: flex;
+//     flex-direction: row;
+//    justify-content: space-between;
+// }
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: $pistachio;
+  padding: 0 1rem;
+  @include tablet {
+    padding: 0 1.5rem;
+  }
+
+  &__logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: "Newsreader";
+    font-size: 2rem;
+    line-height: 2rem;
+    font-weight: 400;
+    color: $black;
+    @include tablet {
+      font-size: 2.5rem;
+      line-height: 2.5rem;
+    }
+  }
+  &__button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: "Outfit";
+    font-size: 1.125rem;
+    line-height: 1.4375rem;
+    font-weight: 500;
+    color: $forest-green;
+    background-color: $pistachio;
+    border: 2px solid $forest-green;
+    padding: 0.5rem 1rem;
+
+    @include tablet {
+      font-size: 1.5rem;
+      line-height: 1.875rem;
+    }
+  }
 }

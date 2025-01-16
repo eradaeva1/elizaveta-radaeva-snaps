@@ -1,4 +1,42 @@
-@use './styles/partials/global' as *;
-@use './styles/partials/variables' as *;
-@use './styles/partials/fonts' as *;
-@use './styles/partials/mixins' as *;
+@use "./styles/partials/global" as *;
+@use "./styles/partials/variables" as *;
+@use "./styles/partials/fonts" as *;
+@use "./styles/partials/mixins" as *;
+
+.hero {
+  background-color: $pistachio;
+  padding: 0 1rem;
+  @include tablet {
+    padding: 0 1.5rem;
+  }
+
+  &__title {
+    margin-top: 0;
+    padding-top: 1rem;
+    font-size: 0.625rem;
+    line-height: 0.75rem;
+    font-weight: 400;
+    color: $black;
+    @include tablet {
+        font-size: 0.75rem;
+        line-height: 0.9375rem;
+    }
+  }
+
+  &__title-text {
+    font-family: "Newsreader";
+    font-weight: 300;
+    font-size: 1.625rem;
+    line-height: 2.375rem;
+    color: $black;
+    margin-top: 0;
+    font-style: normal;
+    &--special {
+      font-style: italic;
+    }
+    @include tablet {
+      font-size: 3.25rem;
+      line-height: 4.125rem;
+    }
+  }
+}
