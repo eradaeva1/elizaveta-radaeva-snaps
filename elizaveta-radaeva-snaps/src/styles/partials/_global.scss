@@ -32,13 +32,17 @@ body {
   flex-direction: row;
   justify-content: space-between;
   background-color: $pistachio;
-  padding: 0 1rem;
+  padding: 0 1rem 1.3rem;
+  position: fixed;
+  width: 100%;
   @include tablet {
     padding: 0 1.5rem;
   }
   &__right {
     display: flex;
     align-items: center;
+    font-family: "Outfit";
+    font-size: 0.5rem;
   }
 
   &__logo {
@@ -46,7 +50,7 @@ body {
     flex-direction: row;
     align-items: center;
     font-family: "Newsreader";
-    font-size: 2rem;
+    font-size: 2.2rem;
     line-height: 2rem;
     font-weight: 400;
     color: $black;
@@ -60,25 +64,28 @@ body {
     flex-direction: row;
     align-items: center;
     font-family: "Outfit";
-    font-size: 1.125rem;
+    font-size: 0.9375rem;
     line-height: 1.4375rem;
     font-weight: 500;
     color: $forest-green;
     background-color: $pistachio;
-    border: 2px solid $forest-green;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
-
+    border: 2.5px solid $forest-green;
+    padding: 0.14rem 1rem;
+    border-radius: 1.25rem;
+    
     @include tablet {
       font-size: 1.5rem;
       line-height: 1.875rem;
     }
   }
+  &__button-icon {
+    margin-left: 0.38rem;
+  }
 }
 
 .footer {
   background-color: $pistachio;
-  padding: 0 1rem;
+  padding: 4rem 1rem 0;
   @include tablet {
     padding: 0 1.5rem;
   }
@@ -111,6 +118,9 @@ body {
     justify-content: space-between;
     width: 50%;
     padding-top: 1.5rem;
+  }
+  &__social-twitter {
+    margin-top: 0.2rem;
   }
   &__rights {
     display: flex;
