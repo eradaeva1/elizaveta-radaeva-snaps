@@ -5,8 +5,8 @@
 
 .hero {
   background-color: $pistachio;
-  padding: 0 1rem;
-  margin-top: 6.7rem;
+  padding: 1rem 1rem;
+  margin-top: 5.6rem;
   @include tablet {
     padding: 0 1.5rem;
   }
@@ -43,19 +43,24 @@
   }
 }
 
+
+
 .photo__card {
   padding-bottom: 0.5rem;
+
 }
 
 .photo__card-wrap {
   display: flex;
   background-color: $sage;
-  border-radius: 8px;
-  border: 2px solid $sea-green;
+  border-radius: 0.5rem;
+  border: 0.125rem solid $sea-green;
   margin-bottom: 1rem;
   overflow: hidden;
-//   height: 90%;
 }
+
+
+
 .photo__cards-list {
   background-color: $pistachio;
   padding: 3rem 1rem 0;
