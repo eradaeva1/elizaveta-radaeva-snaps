@@ -13,9 +13,9 @@
   &__title {
     margin-top: 0;
     padding-top: 1rem;
-    font-size: 0.625rem;
-    line-height: 0.75rem;
-    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 2rem;
+    font-weight: 500;
     color: $black;
     @include tablet {
         font-size: 0.75rem;
@@ -29,10 +29,12 @@
     font-size: 1.625rem;
     line-height: 2.375rem;
     color: $black;
-    margin-top: 0;
+    margin: 0;
     font-style: normal;
     &--special {
+      font-family: "Newsreader";
       font-style: italic;
+      font-weight: 300;
     }
     @include tablet {
       font-size: 3.25rem;
@@ -40,3 +42,52 @@
     }
   }
 }
+
+.photo__card {
+  padding-bottom: 1rem;
+}
+.photo__cards-list {
+  background-color: $pistachio;
+  padding: 3rem 1rem 0;
+  margin-top: 0;
+  position: relative;
+  z-index: 0;
+  margin-bottom: -1.7rem;
+  @include tablet {
+    padding: 0 1.5rem;
+  }
+}
+  .photo__card-image {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+
+  }
+
+.photo__card-photographer {
+font-family: "Outfit";
+position: relative;
+z-index: 2;
+// margin: 0;
+text-align: right;
+margin-top: -2rem;
+background-color: $pistachio;
+width: 34%;
+}
+
+.photo__card-tag {
+  font-family: "Outfit";
+  font-weight: 300;
+  font-size: 0.75rem;
+  line-height: 0.9375rem;
+  color: $black;
+  background-color: $pistachio;
+  padding: 0.5rem 1rem;
+  border: 2px solid $forest-green;
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+  @include tablet {
+    font-size: 1.125rem;
+    line-height: 1.4375rem;
+  }
+}
+

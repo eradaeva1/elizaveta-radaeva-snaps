@@ -19,7 +19,6 @@ body {
   padding: 0;
   display: flex;
   flex-direction: column;
-  
 }
 
 // header {
@@ -78,9 +77,54 @@ body {
 }
 
 .footer {
-    background-color: $pistachio;
-    padding: 0 1rem;
+  background-color: $pistachio;
+  padding: 0 1rem;
   @include tablet {
     padding: 0 1.5rem;
+  }
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__links-left {
+    display: flex;
+    flex-direction: column;
+  }
+  &__links-right {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
+  }
+  &__link {
+    color: $black;
+    font-family: "Outfit";
+    font-weight: 600;
+    font-size: 0.75rem;
+    line-height: 0.9375rem;
+    font-weight: 500;
+    padding-top: 0.35rem;
+  }
+  &__socials {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 50%;
+    padding-top: 1.5rem;
+  }
+  &__rights {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 86%;
+    padding: 0.9rem 0 1.7rem;
+  }
+  &__rights-text {
+    color: $sea-green;
+    font-family: "Outfit";
+    font-size: 0.8125rem;
+    line-height: 0.9375rem;
+    font-weight: 500;
+  
   }
 }
