@@ -18,6 +18,7 @@ function FilterDrawer({ isDrawerOpen, selectedTag, setSelectedTag }) {
     return (
       <div className="nav__button-content">
       <h2 className="filter__title">Filters</h2>
+      <div className="filter__container">
         {tagsData.map((tag, index) => (
           <button
             key={index}
@@ -29,6 +30,7 @@ function FilterDrawer({ isDrawerOpen, selectedTag, setSelectedTag }) {
             {tag}
           </button>
         ))}
+        </div>
       </div>
     );
   }

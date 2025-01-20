@@ -3,8 +3,10 @@
 function Footer() {
   return (
     <section className="footer">
-      <h2 className="nav__logo">Snaps</h2>
+      
       <div className="footer__container">
+      <h2 className="nav__logo footer__logo footer__card">Snaps</h2>
+      <div className="footer__links">
         <article className="footer__links-left">
           <a href="#" className="footer__link">
             For photographers
@@ -13,7 +15,7 @@ function Footer() {
             Hire Talent
           </a>
           <a href="#" className="footer__link">
-            Support
+            Inspiration
           </a>
         </article>
         <article className="footer__links-right">
@@ -27,6 +29,8 @@ function Footer() {
             Support
           </a>
         </article>
+        </div>
+        </div>
         <article className="footer__socials">
           <a href="#" className="footer__social-link">
             <img
@@ -57,7 +61,7 @@ function Footer() {
             />
           </a>
         </article>
-      </div>
+    
       <article className="footer__rights">
         <a href="#" className="footer__rights-text">
           © 2024 Snaps .{" "}
