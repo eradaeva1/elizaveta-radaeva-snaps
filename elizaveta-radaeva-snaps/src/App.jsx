@@ -18,7 +18,7 @@ function App() {
 
   return (
     <>
-      <Header toggleDrawer={toggleDrawer}/>
+      <Header toggleDrawer={toggleDrawer} isDrawerOpen={isDrawerOpen}/>
       <FilterDrawer
         isDrawerOpen={isDrawerOpen}
         selectedTag={selectedTag}

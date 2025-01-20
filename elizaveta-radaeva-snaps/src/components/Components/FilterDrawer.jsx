@@ -17,12 +17,12 @@ function FilterDrawer({ isDrawerOpen, selectedTag, setSelectedTag }) {
   
     return (
       <div className="nav__button-content">
-      <h2 className="filter__tags">Filters</h2>
+      <h2 className="filter__title">Filters</h2>
         {tagsData.map((tag, index) => (
           <button
             key={index}
-            className={`filter__tags-items ${
-              selectedTag === tag ? "filter__tags-items--selected" : ""
+            className={`filter__tags ${
+              selectedTag === tag ? "filter__tags--selected" : ""
             }`}
             onClick={() => handleTagClick(tag)}
           >

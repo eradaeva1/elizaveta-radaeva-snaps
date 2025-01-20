@@ -73,9 +73,8 @@ body {
     border: 2.5px solid $forest-green;
     padding: 0.14rem 1rem;
     border-radius: 1.25rem;
+    // outline: $forest-green;
 
-   
-    
     @include tablet {
       font-size: 1.5rem;
       line-height: 1.875rem;
@@ -86,23 +85,43 @@ body {
   }
 }
 
-
-
+.nav__button--active {
+  background-color: $forest-green;
+  color: $white;
+  text-decoration: none;
+  // outline: $forest-green;
+}
 
 .nav__button-content {
   display: flex;
   flex-direction: wrap;
   flex-wrap: wrap;
   background-color: $sage;
-  padding: 5.5rem 1rem 0;
+  padding: 5.5rem 1rem 1rem;
   font-size: 0.8125rem;
+  font-family: "Outfit";
+  width: 100%;
+  margin-bottom: -5.6rem;
 }
 
+.filter__title {
+  width: 100%;
+  color: $black;
+}
+.filter__tags {
+  color: $forest-green;
+  background-color: $white;
+  border: 0.075rem solid $forest-green;
+  padding: 0.33rem 0.3rem;
+  margin: 0.2rem 0.35rem 0.2rem 0;
 
-// .filter__tags-items {
-//   font-size: 0.75rem;
-// }
-
+  &--selected {
+    background-color: $forest-green;
+    color: $white;
+    text-decoration: none;
+    outline: none;
+  }
+}
 
 .footer {
   background-color: $pistachio;
@@ -156,6 +175,5 @@ body {
     font-size: 0.8125rem;
     line-height: 0.9375rem;
     font-weight: 500;
-  
   }
 }

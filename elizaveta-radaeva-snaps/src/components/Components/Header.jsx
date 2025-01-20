@@ -1,17 +1,26 @@
 import React, { useState } from "react";
+import FilterDrawer from "./FilterDrawer";
 
-
-function Header({toggleDrawer}) {
+function Header({ toggleDrawer, isDrawerOpen }) {
   return (
     <header>
       <nav className="nav">
         <h2 className="nav__logo">Snaps</h2>
         <div className="nav__right">
-          <button className="nav__button" onClick={toggleDrawer}>
-          Filters
+          <button
+            className={`nav__button ${
+              isDrawerOpen ? "nav__button--active" : ""
+            }`}
+            onClick={toggleDrawer}
+          >
+            Filters
             <img
-              src="src\assets\logos\Filter.svg"
-              alt="filter icon"
+              src={
+                isDrawerOpen
+                  ? "src/assets/logos/Filter-White.svg"
+                  :  "src/assets/logos/Filter.svg"
+              }
+              alt={isDrawerOpen ? "Close Filter" : "Open Filter"}
               className="nav__button-icon"
             />
           </button>
