@@ -18,7 +18,7 @@ function Header({ toggleDrawer, isDrawerOpen }) {
               src={
                 isDrawerOpen
                   ? "src/assets/logos/Filter-White.svg"
-                  :  "src/assets/logos/Filter.svg"
+                  : "src/assets/logos/Filter.svg"
               }
               alt={isDrawerOpen ? "Close Filter" : "Open Filter"}
               className="nav__button-icon"

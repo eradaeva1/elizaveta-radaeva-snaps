@@ -1,4 +1,4 @@
-// import Hero from './Hero.scss';
+
 
 function Hero() {
   return (

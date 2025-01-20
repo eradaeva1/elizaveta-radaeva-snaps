@@ -7,9 +7,9 @@ import photosData from "../../data/photos.json";
 function FilterDrawer({ isDrawerOpen, selectedTag, setSelectedTag }) {
     const handleTagClick = (tag) => {
       if (selectedTag === tag) {
-        setSelectedTag(null); // Deselect tag
+        setSelectedTag(null); 
       } else {
-        setSelectedTag(tag); // Select tag
+        setSelectedTag(tag); 
       }
     };
   
