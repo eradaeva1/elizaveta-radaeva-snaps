@@ -30,7 +30,7 @@ function Footer() {
           </a>
         </article>
         </div>
-        </div>
+        
         <article className="footer__socials">
           <a href="#" className="footer__social-link">
             <img
@@ -61,7 +61,7 @@ function Footer() {
             />
           </a>
         </article>
-    
+        </div>
       <article className="footer__rights">
         <a href="#" className="footer__rights-text">
           © 2024 Snaps .{" "}
