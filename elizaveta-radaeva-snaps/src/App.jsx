@@ -1,30 +1,24 @@
-import { useState } from "react";
+
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.scss";
-import Header from "./components/Components/Header";
-import Hero from "./components/Components/Hero";
-import Footer from "./components/Components/Footer";
-import PhotoCardsList from "./components/Components/PhotoCardsList";
-import FilterDrawer from "./components/Components/FilterDrawer";
+import HomePage from "./pages/HomePage/HomePage";
+import PhotoDetail from "./pages/PhotoDetail/PhotoDetail";
 
-function App() {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [selectedTag, setSelectedTag] = useState(null);
 
-  const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen);
-
-  return (
-    <>
-      <Header toggleDrawer={toggleDrawer} isDrawerOpen={isDrawerOpen} />
-      <FilterDrawer
-        isDrawerOpen={isDrawerOpen}
-        selectedTag={selectedTag}
-        setSelectedTag={setSelectedTag}
-      />
-      <Hero />
-      <PhotoCardsList selectedTag={selectedTag} />
-      <Footer />
-    </>
-  );
-}
+  function App() {
+    return (
+      <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/photo/:tag" element={<PhotoDetail />} />
+      </Routes>
+    </Router>
+    );
+  }
 
 export default App;
+
+
+
+
