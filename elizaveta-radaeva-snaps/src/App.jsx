@@ -11,7 +11,7 @@ import PhotoDetail from "./pages/PhotoDetail/PhotoDetail";
       <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/photo/:tag" element={<PhotoDetail />} />
+        <Route path="/photo/tag/:tag" element={<PhotoDetail />} />
       </Routes>
     </Router>
     );

@@ -22,10 +22,10 @@ import React from "react";
 // }
 function PhotoCardsList({ selectedTag, photos }) {
 
-    const filteredPhotos = selectedTag
-    ? photosData.filter((photo) => photo.tags.includes(selectedTag))
-    : photosData;
-    
+    // const filteredPhotos = selectedTag
+    // ? photosData.filter((photo) => photo.tags.includes(selectedTag))
+    // : photosData;
+
   return (
     <section className="photo__cards-list">
       {photos.map((photo) => (

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { fetchPhotos } from "../../utils/api"; // Axios fetch helper
+import { fetchPhotos, fetchComments, postComment } from "../../utils/api"; // Axios fetch helper
 import Header from "../../components/Components/Header";
-import Footer from "../..components/Components/Footer";
+import Footer from "../../components/Components/Footer";
 import CommentForm from "../../components/CommentForm/CommentForm"; // Assuming you have a separate CommentForm component
 import axios from "axios";
 
@@ -18,22 +18,41 @@ function PhotoDetail() {
   const [error, setError] = useState(null);
   const navigate = useNavigate(); // For navigating back to the HomePage
 
+  // useEffect(() => {
+  //   const getPhotoDetails = async () => {
+  //     try {
+  //       const response = await fetchPhotos();
+  //       // const matchedPhoto = response.find((photo) => photo.id === parseInt(photoId));
+  //       // const response = await axios.get(`https://unit-3-project-c5faaab51857.herokuapp.com/photos/${photoId}`);
+  //       setPhotoDetails(response.data);
+  //       setLikes(response.data.likes); // Assuming the API provides likes
+  //     } catch (err) {
+  //       setError("Failed to load photo details.");
+  //       console.error(err);
+  //     }
+  //   };
+
   useEffect(() => {
     const getPhotoDetails = async () => {
       try {
-        const response = await axios.get(`https://unit-3-project-c5faaab51857.herokuapp.com/photos/${photoId}`);
-        setPhotoDetails(response.data);
-        setLikes(response.data.likes); // Assuming the API provides likes
+        const response = await fetchPhotos(); // Fetch all photos
+        const filteredPhotos = response.filter((photo) =>
+          photo.tags.includes(tag) // Filter photos based on selected tag
+        );
+        setPhotoDetails(filteredPhotos);
       } catch (err) {
         setError("Failed to load photo details.");
         console.error(err);
       }
     };
 
-    const getComments = async () => {
+
+
+
+        const getComments = async () => {
       try {
-        const response = await axios.get(`https://unit-3-project-c5faaab51857.herokuapp.com/comments?photoId=${photoId}`);
-        setComments(response.data);
+        const response = await fetchComments(tag); // Fetch comments for the selected tag
+        setComments(response);
       } catch (err) {
         setError("Failed to load comments.");
         console.error(err);
@@ -42,7 +61,11 @@ function PhotoDetail() {
 
     getPhotoDetails();
     getComments();
-  }, [photoId]);
+  }, [tag]);
+
+  const handleBackHome = () => {
+    navigate("/"); // Navigate back to the homepage
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -52,8 +75,19 @@ function PhotoDetail() {
     return <div>{error}</div>;
   }
 
-  const handleBackHome = () => {
-    navigate("/"); // Navigate back to the homepage
+
+  const handleCommentSubmit = async (name, comment) => {
+    if (!name || !comment) {
+      setCommentError("Both name and comment are required.");
+      return;
+    }
+    try {
+      await postComment(tag, name, comment); // Post the new comment
+      setCommentError(null); // Reset error message if successful
+      getComments(); // Refresh comments
+    } catch (err) {
+      console.error("Error posting comment", err);
+    }
   };
 
   return (
@@ -79,7 +113,10 @@ function PhotoDetail() {
 
         <section className="photo-detail__comments">
           <h2>Comments</h2>
-          <CommentForm photoId={photoId} fetchComments={getComments} />
+          <CommentForm
+          handleCommentSubmit={handleCommentSubmit} // Pass the submit handler
+          />
+          {commentError && <p className="comment-error">{commentError}</p>}
           <ul>
             {comments.map((comment, index) => (
               <li key={index}>

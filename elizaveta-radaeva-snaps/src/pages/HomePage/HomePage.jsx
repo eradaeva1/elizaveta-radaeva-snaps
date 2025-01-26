@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { fetchPhotos } from "../../utils/api"; // Axios fetch helper
 import Header from "../../components/Components/Header";
-import Footer from "../..components/Components/Footer";
+import Footer from "../../components/Components/Footer";
 import FilterDrawer from "../../components/Components/FilterDrawer";
 import Hero from "../../components/Components/Hero";
 import PhotoCardsList from "../../components/Components/PhotoCardsList"; // Include PhotoCardsList
@@ -16,16 +16,27 @@ function HomePage() {
   // Function to toggle the drawer (for filter functionality)
   const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen);
 
-  useEffect(() => {
+//   useEffect(() => {
+//     const getPhotos = async () => {
+//       try {
+//         const data = await fetchPhotos(); // Fetch photos using Axios
+//         setPhotos(data);
+//       } catch (err) {
+//         console.error("Error fetching photos:", err);
+//         setError("Failed to load photos.");
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+useEffect(() => {
     const getPhotos = async () => {
       try {
-        const data = await fetchPhotos(); // Fetch photos using Axios
-        setPhotos(data);
+        const response = await fetchPhotos(); // Fetch photos using the new API helper
+        setPhotos(response);  // Save the response data in state
       } catch (err) {
-        console.error("Error fetching photos:", err);
-        setError("Failed to load photos.");
-      } finally {
-        setLoading(false);
+        setError("Error fetching photos"); // Set an error message if the API fails
+        console.error(err);
       }
     };
 
