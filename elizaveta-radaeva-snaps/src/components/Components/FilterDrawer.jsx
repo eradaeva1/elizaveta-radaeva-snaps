@@ -1,10 +1,12 @@
-import tagsData from "../../data/tags.json";
-import { useState } from "react";
-import photosData from "../../data/photos.json";
+// import tagsData from "../../data/tags.json";
+// import { useState } from "react";
+// import photosData from "../../data/photos.json";
+import React from "react";
 
 
 
-function FilterDrawer({ isDrawerOpen, selectedTag, setSelectedTag }) {
+
+function FilterDrawer({ isDrawerOpen, selectedTag, setSelectedTag, tags }) {
     const handleTagClick = (tag) => {
       if (selectedTag === tag) {
         setSelectedTag(null); 
@@ -19,7 +21,7 @@ function FilterDrawer({ isDrawerOpen, selectedTag, setSelectedTag }) {
       <div className="nav__button-content">
       <h2 className="filter__title">Filters</h2>
       <div className="filter__container">
-        {tagsData.map((tag, index) => (
+        {tags.map((tag, index) => (
           <button
             key={index}
             className={`filter__tags ${
@@ -29,6 +31,7 @@ function FilterDrawer({ isDrawerOpen, selectedTag, setSelectedTag }) {
           >
             {tag}
           </button>
+      
         ))}
         </div>
       </div>
