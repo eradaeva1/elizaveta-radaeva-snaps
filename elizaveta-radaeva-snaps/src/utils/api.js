@@ -34,8 +34,10 @@ export const fetchPhotoById = async (photoId) => {
 // Fetch comments for a specific photo
 export const fetchComments = async (photoId) => {
     try {
+      
       const response = await axios.get(`${API_URL}/photos/${photoId}/comments?api_key=${API_KEY}`);
-      return response.data;  // Return the comments
+      const sortedComments = response.data.sort((a, b) => b.timestamp - a.timestamp);
+      return sortedComments; 
     } catch (error) {
       console.error("Error fetching comments:", error);
       throw error;
@@ -49,6 +51,7 @@ export const fetchComments = async (photoId) => {
 export const postComment = async ( photoId, name, comment) => {
     try {
       console.log(photoId, name, comment)
+      
       const response = await axios.post(
         `${API_URL}/photos/${photoId}/comments?api_key=${API_KEY}`,
         { name, comment, }
