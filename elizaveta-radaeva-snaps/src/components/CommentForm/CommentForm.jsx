@@ -1,24 +1,69 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { postComment } from "../../utils/api";
+import axios from "axios";
 
-function CommentForm({ addComment }) {
+const CommentForm = ({ addComment, photoId }) => {
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleCommentSubmit = async (e) => {
     e.preventDefault();
+    // addComment(newComment);
+
     if (!name || !comment) {
       alert("Please fill in both fields.");
       return;
     }
 
-    const newComment = { name, comment };
-    addComment(newComment);
-    setName("");
-    setComment("");
-  };
+
+    try {
+            const newComment = { name, comment };
+            await postComment( photoId, name, comment); 
+            
+            // setCommentError(null); // Reset error message if successful
+            if (addComment) {
+              addComment(newComment);
+            }
+            
+            setName("");
+            setComment("");
+            // getComments(); // Refresh comments
+          } catch (err) {
+            console.error("Error posting comment", err);
+          }
+        };
+      
+         
+
+    
+
+// useEffect(() => {
+
+   
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     if (!name || !comment) {
+//       setCommentError("Both name and comment are required.");
+//       return;
+//     }
+//     try {
+//       await postComment(tag, name, comment); // Post the new comment
+//       setCommentError(null); // Reset error message if successful
+//       getComments(); // Refresh comments
+//     } catch (err) {
+//       console.error("Error posting comment", err);
+//     }
+//   };
+
+//     postComment();
+    
+//   }, []);
+
+
+
 
   return (
-    <form className="comment__form" onSubmit={handleSubmit}>
+    <form className="comment__form" onSubmit={handleCommentSubmit}>
       <h3>Add a Comment</h3>
       <div className="comment__form-field">
         <label htmlFor="name">Name:</label>

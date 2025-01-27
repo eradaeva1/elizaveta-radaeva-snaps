@@ -41,10 +41,28 @@ function PhotoDetail() {
     }
   };
    
+  // const handleCommentSubmit = async (name, comment) => {
+  //   if (!name || !comment) {
+  //     setCommentError("Both name and comment are required.");
+  //     return;
+  //   }
+  //   try {
+  //     await postComment(tag, name, comment); // Post the new comment
+  //     setCommentError(null); // Reset error message if successful
+  //     getComments(); // Refresh comments
+  //   } catch (err) {
+  //     console.error("Error posting comment", err);
+  //   }
+  // };
 
     getPhotoDetails();
     getComments();
+    
   }, [photoId]);
+
+
+
+  
 
   const handleBackHome = () => {
     navigate("/"); // Navigate back to the homepage
@@ -60,31 +78,7 @@ function PhotoDetail() {
 
 
 
- 
-  // const handleCommentSubmit = async (name, comment) => {
-  //   if (!name || !comment) {
-  //     setCommentError("Both name and comment are required.");
-  //     return;
-  //   }
-  //   try {
-  //     await postComment(tag, name, comment); // Post the new comment
-  //     setCommentError(null); // Reset error message if successful
-  //     getComments(); // Refresh comments
-  //   } catch (err) {
-  //     console.error("Error posting comment", err);
-  //   }
-  // };
 
-
-   //     const getComments = async () => {
-    //   try {
-    //     const comments = await fetchComments(photoId); // Fetch comments for the selected tag
-    //     setComments(comments);
-    //   } catch (err) {
-    //     setError("Failed to load comments.");
-    //     console.error(err);
-    //   }
-    // };
   return (
     <>
       <Header />
@@ -108,10 +102,10 @@ function PhotoDetail() {
 
         <section className="photo__detail-comments">
           <h2>Comments</h2>
-          {/* <CommentForm
-          handleCommentSubmit={handleCommentSubmit} // Pass the submit handler
-          /> */}
-          {/* {commentError && <p className="comment-error">{commentError}</p>} */}
+          <CommentForm photoId={photoId}
+          // handleCommentSubmit={handleCommentSubmit} // Pass the submit handler
+          />
+          {/* {commentError && <p className="comment__error">{commentError}</p>} */}
           <ul>
             {comments.map((comment, index) => (
               <li key={index}>

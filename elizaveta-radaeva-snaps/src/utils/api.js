@@ -42,25 +42,27 @@ export const fetchComments = async (photoId) => {
     }
   };
 
+
+  
+
 // Post a comment for a specific photo
-export const postComment = async (id, name, comment) => {
+export const postComment = async ( photoId, name, comment) => {
     try {
+      console.log(photoId, name, comment)
       const response = await axios.post(
-        `${API_URL}/photos/${id}/comments?api_key=${API_KEY}`,
-        { name, comment },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${API_KEY}`,
-          },
-        }
+        `${API_URL}/photos/${photoId}/comments?api_key=${API_KEY}`,
+        { name, comment, }
       );
+      
       return response.data;  // Return the posted comment
     } catch (error) {
       console.error("Error posting comment:", error);
       throw error;
     }
   };
+
+
+
 
   export const fetchTags = async () => {
     try {
