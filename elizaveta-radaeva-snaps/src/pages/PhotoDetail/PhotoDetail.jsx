@@ -75,12 +75,25 @@ function PhotoDetail() {
               src={photoDetails.photo}
               alt={photoDetails.title}
             />
-            <p className="photo__card-tags">{photoDetails.tag}</p>
+            <div className="photo__card-tags">
+                {photoDetails.tags && photoDetails.tags.length > 0 ? (
+                  photoDetails.tags.map((tag, index) => (
+                    <span key={index} className="photo__card-tag">
+                      {tag}
+                    </span>
+                  ))
+                ) : (
+                  <span>No tags available</span>
+                )}
+              </div>
+              <div className="photo__detail-info">
+            
+            <p className="photo__detail__likes">♡ {photoDetails.likes} likes</p>
+            <p className="photo__detail-date">{formatDate(photoDetails.timestamp)}</p>
             <p className="photo__detail-photographer">
               Photo by {photoDetails.photographer}
             </p>
-            <p className="photo__detail__likes">♡ {photoDetails.likes} likes</p>
-            <p className="photo__detail-date">{formatDate(photoDetails.timestamp)}</p>
+            </div>
             </div>
           </div>
         )}

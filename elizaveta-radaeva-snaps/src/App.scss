@@ -128,7 +128,9 @@
   display: flex;
   width: 100%;
   justify-content: flex-start;
+  padding-left: 0;
   margin-left: 0.1rem;
+  list-style: none;
   @include tablet {
     margin-left: 0.4rem;
     padding-top: 0.85rem;
@@ -163,10 +165,22 @@
  display: flex;
  flex-direction: column;
 
-
+    &-info {
+      padding-left: 1rem;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
     &-image {
     width: 100%;
     border-radius: 0.5rem 0.5rem 0 0;
+  }
+  &-likes {
+    width: 50%;
+  }
+  &-date {
+    width: 50%;
   }
   
   &-comments {
@@ -187,12 +201,21 @@
     font-size: 0.75rem;
     display: flex;
     flex-direction: row;
-    width: 30%;
+    
     
   }
 
-  .comment__form-btn {
+
+  .comment__form {
+    padding-top: 2rem;
+  padding-bottom: 1rem;
+
+    &-field {
+padding-top: 1rem;
+    }
+  &-btn {
     background-color: $forest-green;
     color: $white;
     margin-right: auto;
+  }
   }
