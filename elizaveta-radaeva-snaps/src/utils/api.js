@@ -15,11 +15,11 @@ const API_KEY = "44e7d366-4987-486b-9dc5-fb3b6220a2ef";  // Directly hardcoded A
 }
  };
 
- 
 
-export const fetchPhotoById = async (id) => {
+
+export const fetchPhotoById = async (photoId) => {
     try {
-      const response = await axios.get(`${API_URL}/photos/${id}?api_key=${API_KEY}`);
+      const response = await axios.get(`${API_URL}/photos/${photoId}?api_key=${API_KEY}`);
       return response.data;  // Return the photo data
     } catch (error) {
       console.error("Error fetching photo:", error); // Log the error if it occurs
@@ -32,9 +32,9 @@ export const fetchPhotoById = async (id) => {
 
 // ?api_key=
 // Fetch comments for a specific photo
-export const fetchComments = async (id) => {
+export const fetchComments = async (photoId) => {
     try {
-      const response = await axios.get(`${API_URL}/photos/${id}/comments?api_key=${API_KEY}`);
+      const response = await axios.get(`${API_URL}/photos/${photoId}/comments?api_key=${API_KEY}`);
       return response.data;  // Return the comments
     } catch (error) {
       console.error("Error fetching comments:", error);

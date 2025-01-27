@@ -29,20 +29,6 @@ const [tagError, setTagError] = useState(null);
   useEffect(() => {
   
   const getPhotos = async () => {
-      //   try {
-      //     setPhotosLoading(true); // Set loading to true before starting the API call
-      //     const data = await fetchPhotos(); 
-      //     console.log("getPhotos=", data);
-      //     // Use the API helper to fetch photos
-      //     setPhotos(data); // Update state with fetched data
-      //   } catch (err) {
-      //     setPhotoError("Error fetching photos. Please try again later."); // Handle errors
-      //     console.error(err);
-      //   } finally {
-      //     setPhotosLoading(false); // Ensure loading is set to false after the API call
-      //   }
-      // };
-
         try {
           setPhotosLoading(true);
           const data = await fetchPhotos();
@@ -62,7 +48,7 @@ const [tagError, setTagError] = useState(null);
         try {
           setTagsLoading(true);
     const response = await fetchTags();
-    setTags(response.data);
+    setTags(response);
   } catch (err) {
     setTagError("Error fetching tags. Please try again later.");
     console.error(err);

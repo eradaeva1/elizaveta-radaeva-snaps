@@ -7,7 +7,7 @@
   
 
 //   return (
-//   )
+    
 // }
 
 // export default PhotoCard;
