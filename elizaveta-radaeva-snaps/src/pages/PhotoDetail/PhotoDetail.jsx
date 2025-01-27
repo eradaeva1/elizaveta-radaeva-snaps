@@ -1,83 +1,63 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { fetchPhotoById, fetchComments, postComment } from "../../utils/api"; // Axios fetch helper
+import { fetchPhotoById, fetchComments, postComment } from "../../utils/api";
 import Header from "../../components/Components/Header";
 import Footer from "../../components/Components/Footer";
-import CommentForm from "../../components/CommentForm/CommentForm"; // Assuming you have a separate CommentForm component
+import CommentForm from "../../components/CommentForm/CommentForm";
+import "../PhotoDetail/PhotoDetail.scss"
 
 
 
+const formatDate = (timestamp) => {
+  const date = new Date(timestamp);
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const year = date.getFullYear();
+  return `${month}/${day}/${year}`;
+};
 
 
 function PhotoDetail() {
-  const { photoId } = useParams(); // Get the photo ID from URL params
+  const { photoId } = useParams();
   const [photoDetails, setPhotoDetails] = useState(null);
   const [comments, setComments] = useState([]);
-  const [likes, setLikes] = useState(0); // Default likes
+  const [likes, setLikes] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const navigate = useNavigate(); // For navigating back to the HomePage
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getPhotoDetails = async () => {
       try {
         const details = await fetchPhotoById(photoId);
-        // const matchedPhoto = response.find((photo) => photo.id === parseInt(photoId));
-        
+
         setPhotoDetails(details);
-        // setLikes(response.likes); // Assuming the API provides likes
       } catch (err) {
         setError("Failed to load photo details.");
         console.error(err);
       }
     };
- const getComments = async() => {
-    try {
-      const comments = await fetchComments(photoId);
-      setComments(comments);
-    } catch (err) {
-      setError("Failed to load photo details.");
-      console.error(err)
-    }
-  };
-   
-  // const handleCommentSubmit = async (name, comment) => {
-  //   if (!name || !comment) {
-  //     setCommentError("Both name and comment are required.");
-  //     return;
-  //   }
-  //   try {
-  //     await postComment(tag, name, comment); // Post the new comment
-  //     setCommentError(null); // Reset error message if successful
-  //     getComments(); // Refresh comments
-  //   } catch (err) {
-  //     console.error("Error posting comment", err);
-  //   }
-  // };
+    const getComments = async () => {
+      try {
+        const comments = await fetchComments(photoId);
+        setComments(comments);
+      } catch (err) {
+        setError("Failed to load photo details.");
+        console.error(err);
+      }
+    };
 
     getPhotoDetails();
     getComments();
-    
   }, [photoId]);
 
-
-
-  
-
   const handleBackHome = () => {
-    navigate("/"); // Navigate back to the homepage
+    navigate("/");
   };
-
-  // if (loading) {
-  //   return <div>Loading...</div>;
-  // }
 
   if (error) {
     return <div>{error}</div>;
   }
-
-
-
 
   return (
     <>
@@ -89,23 +69,26 @@ function PhotoDetail() {
       <main className="photo__detail">
         {photoDetails && (
           <div className="photo__detail-content">
-            <h1 className="photo__detail-title">{photoDetails.title}</h1>
+            <div className="photo__detail-wrap">
             <img
               className="photo__detail-image"
               src={photoDetails.photo}
               alt={photoDetails.title}
             />
-            <p className="photo__detail-photographer">Photographer: {photoDetails.photographer}</p>
-            <p className="photo-detail__likes">Likes: {likes}</p>
+            <p className="photo__card-tags">{photoDetails.tag}</p>
+            <p className="photo__detail-photographer">
+              Photo by {photoDetails.photographer}
+            </p>
+            <p className="photo__detail__likes">♡ {photoDetails.likes} likes</p>
+            <p className="photo__detail-date">{formatDate(photoDetails.timestamp)}</p>
+            </div>
           </div>
         )}
 
         <section className="photo__detail-comments">
-          <h2>Comments</h2>
-          <CommentForm photoId={photoId}
-          // handleCommentSubmit={handleCommentSubmit} // Pass the submit handler
-          />
-          {/* {commentError && <p className="comment__error">{commentError}</p>} */}
+          
+          <CommentForm photoId={photoId} />
+
           <ul>
             {comments.map((comment, index) => (
               <li key={index}>

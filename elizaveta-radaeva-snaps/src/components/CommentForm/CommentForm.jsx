@@ -64,7 +64,6 @@ const CommentForm = ({ addComment, photoId }) => {
 
   return (
     <form className="comment__form" onSubmit={handleCommentSubmit}>
-      <h3>Add a Comment</h3>
       <div className="comment__form-field">
         <label htmlFor="name">Name:</label>
         <input
