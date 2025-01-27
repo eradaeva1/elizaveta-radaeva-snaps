@@ -31,11 +31,19 @@ function PhotoDetail() {
         console.error(err);
       }
     };
-
+ const getComments = async() => {
+    try {
+      const comments = await fetchComments(photoId);
+      setComments(comments);
+    } catch (err) {
+      setError("Failed to load photo details.");
+      console.error(err)
+    }
+  };
    
 
     getPhotoDetails();
-    // getComments();
+    getComments();
   }, [photoId]);
 
   const handleBackHome = () => {
@@ -52,15 +60,7 @@ function PhotoDetail() {
 
 
 
-  // const getComments = async() => {
-  //   try {
-  //     const comments = await fetchComments(photoId);
-  //     setComments(comments);
-  //   } catch (err) {
-  //     setError("Failed to load photo details.");
-  //     console.error(err)
-  //   }
-  // };
+ 
   // const handleCommentSubmit = async (name, comment) => {
   //   if (!name || !comment) {
   //     setCommentError("Both name and comment are required.");
@@ -112,13 +112,13 @@ function PhotoDetail() {
           handleCommentSubmit={handleCommentSubmit} // Pass the submit handler
           /> */}
           {/* {commentError && <p className="comment-error">{commentError}</p>} */}
-          {/* <ul>
+          <ul>
             {comments.map((comment, index) => (
               <li key={index}>
                 <strong>{comment.name}</strong>: {comment.comment}
               </li>
             ))}
-          </ul> */}
+          </ul>
         </section>
       </main>
 
