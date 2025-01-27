@@ -4,7 +4,7 @@ import { fetchPhotoById, fetchComments, postComment } from "../../utils/api";
 import Header from "../../components/Components/Header";
 import Footer from "../../components/Components/Footer";
 import CommentForm from "../../components/CommentForm/CommentForm";
-import "../PhotoDetail/PhotoDetail.scss"
+
 
 
 
