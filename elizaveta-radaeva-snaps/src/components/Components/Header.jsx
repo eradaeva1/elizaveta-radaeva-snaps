@@ -1,11 +1,14 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import FilterDrawer from "./FilterDrawer";
 
 function Header({ toggleDrawer, isDrawerOpen }) {
   return (
     <header>
       <nav className="nav">
-        <h2 className="nav__logo">Snaps</h2>
+      <Link to="/" className="nav__logo-link">
+          <h2 className="nav__logo">Snaps</h2>
+        </Link>
         <div className="nav__right">
           <button
             className={`nav__button ${

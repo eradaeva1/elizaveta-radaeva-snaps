@@ -8,59 +8,26 @@ const CommentForm = ({ addComment, photoId }) => {
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
-    // addComment(newComment);
 
     if (!name || !comment) {
       alert("Please fill in both fields.");
       return;
     }
 
-
     try {
-            const newComment = { name, comment };
-            await postComment( photoId, name, comment); 
-            
-            // setCommentError(null); // Reset error message if successful
-            if (addComment) {
-              addComment(newComment);
-            }
-            
-            setName("");
-            setComment("");
-            // getComments(); // Refresh comments
-          } catch (err) {
-            console.error("Error posting comment", err);
-          }
-        };
-      
-         
+      const newComment = { name, comment };
+      await postComment(photoId, name, comment);
 
-    
+      if (addComment) {
+        addComment(newComment);
+      }
 
-// useEffect(() => {
-
-   
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     if (!name || !comment) {
-//       setCommentError("Both name and comment are required.");
-//       return;
-//     }
-//     try {
-//       await postComment(tag, name, comment); // Post the new comment
-//       setCommentError(null); // Reset error message if successful
-//       getComments(); // Refresh comments
-//     } catch (err) {
-//       console.error("Error posting comment", err);
-//     }
-//   };
-
-//     postComment();
-    
-//   }, []);
-
-
-
+      setName("");
+      setComment("");
+    } catch (err) {
+      console.error("Error posting comment", err);
+    }
+  };
 
   return (
     <form className="comment__form" onSubmit={handleCommentSubmit}>
@@ -86,6 +53,6 @@ const CommentForm = ({ addComment, photoId }) => {
       </button>
     </form>
   );
-}
+};
 
 export default CommentForm;

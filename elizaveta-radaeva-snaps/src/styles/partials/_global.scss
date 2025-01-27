@@ -67,7 +67,6 @@ body {
     border: 2.5px solid $forest-green;
     padding: 0rem 1.5rem;
     border-radius: 1.25rem;
-    
 
     &:focus {
       outline: none;
@@ -75,7 +74,6 @@ body {
     }
 
     @include tablet {
-      // font-size: 1.5rem;
       line-height: 1.875rem;
     }
   }

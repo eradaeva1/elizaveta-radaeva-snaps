@@ -5,9 +5,6 @@ import Header from "../../components/Components/Header";
 import Footer from "../../components/Components/Footer";
 import CommentForm from "../../components/CommentForm/CommentForm";
 
-
-
-
 const formatDate = (timestamp) => {
   const date = new Date(timestamp);
   const day = String(date.getDate()).padStart(2, "0");
@@ -15,7 +12,6 @@ const formatDate = (timestamp) => {
   const year = date.getFullYear();
   return `${month}/${day}/${year}`;
 };
-
 
 function PhotoDetail() {
   const { photoId } = useParams();
@@ -70,12 +66,12 @@ function PhotoDetail() {
         {photoDetails && (
           <div className="photo__detail-content">
             <div className="photo__detail-wrap">
-            <img
-              className="photo__detail-image"
-              src={photoDetails.photo}
-              alt={photoDetails.title}
-            />
-            <div className="photo__card-tags">
+              <img
+                className="photo__detail-image"
+                src={photoDetails.photo}
+                alt={photoDetails.title}
+              />
+              <div className="photo__card-tags">
                 {photoDetails.tags && photoDetails.tags.length > 0 ? (
                   photoDetails.tags.map((tag, index) => (
                     <span key={index} className="photo__card-tag">
@@ -87,19 +83,21 @@ function PhotoDetail() {
                 )}
               </div>
               <div className="photo__detail-info">
-            
-            <p className="photo__detail__likes">♡ {photoDetails.likes} likes</p>
-            <p className="photo__detail-date">{formatDate(photoDetails.timestamp)}</p>
-            <p className="photo__detail-photographer">
-              Photo by {photoDetails.photographer}
-            </p>
-            </div>
+                <p className="photo__detail__likes">
+                  ♡ {photoDetails.likes} likes
+                </p>
+                <p className="photo__detail-date">
+                  {formatDate(photoDetails.timestamp)}
+                </p>
+                <p className="photo__detail-photographer">
+                  Photo by {photoDetails.photographer}
+                </p>
+              </div>
             </div>
           </div>
         )}
 
         <section className="photo__detail-comments">
-          
           <CommentForm photoId={photoId} />
 
           <ul>
