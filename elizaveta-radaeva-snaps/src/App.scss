@@ -128,7 +128,9 @@
   display: flex;
   width: 100%;
   justify-content: flex-start;
+  padding-left: 0;
   margin-left: 0.1rem;
+  list-style: none;
   @include tablet {
     margin-left: 0.4rem;
     padding-top: 0.85rem;
@@ -154,3 +156,73 @@
     border-radius: 0.45rem;
   }
 }
+
+
+.photo__detail {
+  background-color: $pistachio;
+  font-family:'Outfit';
+  padding: 0 1rem;
+ display: flex;
+ flex-direction: column;
+ position: relative;
+    z-index: 0;
+    overflow: hidden;
+
+    &-info {
+      padding-left: 1rem;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      position: relative;
+      z-index: 2;
+    }
+    &-image {
+    width: 100%;
+    border-radius: 0.5rem 0.5rem 0 0;
+    position: relative;
+    z-index: 1;
+  }
+  &-likes {
+    width: 50%;
+  }
+  &-date {
+    width: 50%;
+  }
+  
+  &-comments {
+    width: 100%;
+    font-size: 10px;
+    padding-bottom: 5rem;
+  }
+  &-content {
+    display: flex;
+    border: 0.125rem solid $sea-green;
+    background-color: $sage;
+  border-radius: 0.5rem;
+  }
+  
+  }
+
+  .photo__detail-photographer, .photo__detail__likes, .photo__detail-date {
+    font-size: 0.75rem;
+    display: flex;
+    flex-direction: row;
+    
+    
+  }
+
+
+  .comment__form {
+    padding-top: 2rem;
+  padding-bottom: 1rem;
+
+    &-field {
+padding-top: 1rem;
+    }
+  &-btn {
+    background-color: $forest-green;
+    color: $white;
+    margin-right: auto;
+  }
+  }
