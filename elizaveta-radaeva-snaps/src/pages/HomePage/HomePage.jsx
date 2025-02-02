@@ -17,15 +17,18 @@ function HomePage() {
   const [tagError, setTagError] = useState(null);
 
   const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen);
+ 
+
+  const baseUrl = import.meta.env.VITE_APP_URL;
 
   useEffect(() => {
     const getPhotos = async () => {
       try {
         setPhotosLoading(true);
-        const response = await axios.get("http://localhost:8080/photos");
+        const response = await axios.get(baseUrl);
         setPhotos(response.data);
       } catch (err) {
-        setError("Error fetching photos. Please try again later.");
+        setError("Error fetching photos.");
         console.error("Fetch Photos Error:", err);
       } finally {
         setPhotosLoading(false);
@@ -35,7 +38,7 @@ function HomePage() {
     const getTags = async () => {
       try {
         setTagsLoading(true);
-        const response = await axios.get("http://localhost:8080/tags"); // Adjust URL if needed
+        const response = await axios.get(baseUrl); // Adjust URL if needed
         setTags(response.data);
       } catch (err) {
         setTagError("Error fetching tags. Please try again later.");
