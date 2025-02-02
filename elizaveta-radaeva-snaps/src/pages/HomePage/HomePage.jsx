@@ -22,9 +22,8 @@ function HomePage() {
     const getPhotos = async () => {
       try {
         setPhotosLoading(true);
-        const data = await fetchPhotos();
-        console.log("Fetched Photos:", data);
-        setPhotos(data);
+        const response = await axios.get("http://localhost:8080/photos");
+        setPhotos(response.data);
       } catch (err) {
         setError("Error fetching photos. Please try again later.");
         console.error("Fetch Photos Error:", err);
@@ -36,8 +35,8 @@ function HomePage() {
     const getTags = async () => {
       try {
         setTagsLoading(true);
-        const response = await fetchTags();
-        setTags(response);
+        const response = await axios.get("http://localhost:8080/tags"); // Adjust URL if needed
+        setTags(response.data);
       } catch (err) {
         setTagError("Error fetching tags. Please try again later.");
         console.error(err);
@@ -48,7 +47,7 @@ function HomePage() {
 
     getPhotos();
     getTags();
-  }, [fetchPhotos, fetchTags]);
+  }, []);
 
   if (photoError || tagError) {
     return <div>{photoError || tagError}</div>;
