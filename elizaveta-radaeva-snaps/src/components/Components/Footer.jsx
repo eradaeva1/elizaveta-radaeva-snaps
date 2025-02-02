@@ -9,7 +9,7 @@ function Footer() {
               For photographers
             </a>
             <a href="#" className="footer__link">
-              Hire Talent
+              Hire talent
             </a>
             <a href="#" className="footer__link">
               Inspiration

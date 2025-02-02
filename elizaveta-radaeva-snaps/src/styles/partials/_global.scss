@@ -103,6 +103,23 @@ body {
   @include tablet {
     padding: 7.3rem 1.5rem 4.5rem;
   }
+  // @include desktop {
+  //   position: absolute;
+  //   top: 0;
+  //   right: 0;
+  //   width: 20rem;
+  //   height: 100%;
+  // }
+  // &--flex-cont {
+  //   @include desktop {
+  //     display: flex;
+  //     justify-content: flex-start;
+  //     flex-wrap: wrap;
+  //     padding: 2rem 2rem;
+  //     gap: 5px;
+  //   }
+
+  // }
 }
 
 .filter__title {

@@ -13,6 +13,7 @@ function FilterDrawer({ isDrawerOpen, selectedTag, setSelectedTag, tags }) {
 
   return (
     <div className="nav__button-content">
+    <div className="nav-button-content--flex-cont">
       <h2 className="filter__title">Filters</h2>
       <div className="filter__container">
         {tags.map((tag, index) => (
@@ -27,6 +28,7 @@ function FilterDrawer({ isDrawerOpen, selectedTag, setSelectedTag, tags }) {
           </button>
         ))}
       </div>
+    </div>
     </div>
   );
 }

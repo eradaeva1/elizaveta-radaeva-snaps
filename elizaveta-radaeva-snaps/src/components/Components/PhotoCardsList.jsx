@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
 function PhotoCardsList({ photos, tags }) {
   const safePhotos = Array.isArray(photos) ? photos : [];
   console.log("photoCardList", tags);

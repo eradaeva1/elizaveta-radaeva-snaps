@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { fetchPhotoById, fetchComments, postComment } from "../../utils/api";
 import Header from "../../components/Components/Header";
 import Footer from "../../components/Components/Footer";
 import CommentForm from "../../components/CommentForm/CommentForm";
+import axios from "axios";
 
 const formatDate = (timestamp) => {
   const date = new Date(timestamp);
@@ -22,30 +22,38 @@ function PhotoDetail() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
+  const baseUrl = import.meta.env.VITE_APP_URL;
+
   useEffect(() => {
     const getPhotoDetails = async () => {
       try {
-        const details = await fetchPhotoById(photoId);
-
-        setPhotoDetails(details);
+        const response = await axios.get(`${baseUrl}/photos/${photoId}`);
+        setPhotoDetails(response.data);
       } catch (err) {
         setError("Failed to load photo details.");
         console.error(err);
       }
     };
+
     const getComments = async () => {
       try {
-        const comments = await fetchComments(photoId);
-        setComments(comments);
+        const response = await axios.get(
+          `${baseUrl}/photos/${photoId}/comments`
+        );
+        setComments(response.data);
       } catch (err) {
-        setError("Failed to load photo details.");
+        setError("Failed to load comments.");
         console.error(err);
       }
     };
 
-    getPhotoDetails();
-    getComments();
-  }, [photoId]);
+    const fetchData = async () => {
+      await Promise.all([getPhotoDetails(), getComments()]);
+      setLoading(false);
+    };
+
+    fetchData();
+  }, []);
 
   const handleBackHome = () => {
     navigate("/");
@@ -55,6 +63,9 @@ function PhotoDetail() {
     return <div>{error}</div>;
   }
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return (
     <>
       <Header />

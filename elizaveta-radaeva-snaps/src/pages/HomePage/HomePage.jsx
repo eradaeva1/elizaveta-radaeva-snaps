@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { fetchPhotos, fetchTags } from "../../utils/api";
 import Header from "../../components/Components/Header";
 import Footer from "../../components/Components/Footer";
 import FilterDrawer from "../../components/Components/FilterDrawer";
 import Hero from "../../components/Components/Hero";
 import PhotoCardsList from "../../components/Components/PhotoCardsList";
+import axios from "axios";
 
 function HomePage() {
   const [photos, setPhotos] = useState([]);
@@ -17,7 +17,6 @@ function HomePage() {
   const [tagError, setTagError] = useState(null);
 
   const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen);
- 
 
   const baseUrl = import.meta.env.VITE_APP_URL;
 
@@ -25,10 +24,10 @@ function HomePage() {
     const getPhotos = async () => {
       try {
         setPhotosLoading(true);
-        const response = await axios.get(baseUrl);
+        const response = await axios.get(`${baseUrl}/photos`);
         setPhotos(response.data);
       } catch (err) {
-        setError("Error fetching photos.");
+        setPhotoError("Error fetching photos.");
         console.error("Fetch Photos Error:", err);
       } finally {
         setPhotosLoading(false);
@@ -38,7 +37,7 @@ function HomePage() {
     const getTags = async () => {
       try {
         setTagsLoading(true);
-        const response = await axios.get(baseUrl); // Adjust URL if needed
+        const response = await axios.get(`${baseUrl}/tags`); // Adjust URL if needed
         setTags(response.data);
       } catch (err) {
         setTagError("Error fetching tags. Please try again later.");

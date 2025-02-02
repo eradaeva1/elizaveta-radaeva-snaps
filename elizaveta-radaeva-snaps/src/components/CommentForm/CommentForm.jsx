@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { postComment } from "../../utils/api";
 import axios from "axios";
+
 
 const CommentForm = ({ addComment, photoId }) => {
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
+
+  // Get the base URL from environment variables
+  const baseUrl = import.meta.env.VITE_APP_URL;
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
@@ -15,12 +18,20 @@ const CommentForm = ({ addComment, photoId }) => {
     }
 
     try {
+   
       const newComment = { name, comment };
-      await postComment(photoId, name, comment);
 
+    
+      await axios.post(`${baseUrl}/photos/${photoId}/comments`, newComment);
+
+     
       if (addComment) {
         addComment(newComment);
       }
+
+      const updatedComments = await axios.get(`${baseUrl}/photos/${photoId}/comments`);
+    setComment(updatedComments.data);
+
 
       setName("");
       setComment("");
@@ -28,6 +39,32 @@ const CommentForm = ({ addComment, photoId }) => {
       console.error("Error posting comment", err);
     }
   };
+
+  
+  // const handleCommentSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   if (!name || !comment) {
+  //     alert("Please fill in both fields.");
+  //     return;
+  //   }
+
+  //   try {
+  //     const newComment = { name, comment };
+
+  //     // Send request to the server
+  //     const response = await axios.post(`${baseUrl}/photos/${photoId}/comments`, newComment);
+  //     const savedComment = response.data; // Get the saved comment from the server
+
+  //     // Update comments state
+  //     setComments((prevComments) => [...prevComments, savedComment]);
+
+  //     setName("");
+  //     setComment("");
+  //   } catch (err) {
+  //     console.error("Error posting comment", err);
+  //   }
+  // };
 
   return (
     <form className="comment__form" onSubmit={handleCommentSubmit}>
