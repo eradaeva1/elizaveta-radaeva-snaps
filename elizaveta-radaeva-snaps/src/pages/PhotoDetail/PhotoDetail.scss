@@ -73,3 +73,38 @@
     margin-top: 0.3rem;
     padding-right: 0.12rem;
   }
+
+
+  .comment__list {
+    list-style: none;
+    display: flex;
+    padding-left: 0;
+    width: 100%;
+   
+    border-bottom: 0.0938rem solid $sea-green;
+    &-date {
+        color: $forest-green;
+        width: 100%;
+        justify-content: flex-end;
+    }
+    &-name{
+        color: $forest-green;
+        width: 30%;
+    }
+    &-comment {
+        width: 100%;
+        color: $black;
+    }
+  }
+
+  .comment__list-date, .comment__list-name {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .comments__count {
+    border-bottom: 0.0938rem solid $sea-green;
+    padding-bottom: 0.2rem;
+    color: $black;
+  }

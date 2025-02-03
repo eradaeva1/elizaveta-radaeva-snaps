@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-
+import "./CommentForm.scss";
 
 const CommentForm = ({ addComment, photoId }) => {
   const [name, setName] = useState("");
@@ -39,18 +39,20 @@ const CommentForm = ({ addComment, photoId }) => {
   return (
     <form className="comment__form" onSubmit={handleCommentSubmit}>
       <div className="comment__form-field">
-        <label htmlFor="name">Name:</label>
+        <label htmlFor="name" className="label">Name</label>
         <input
           id="name"
+          className="input"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
       </div>
       <div className="comment__form-field">
-        <label htmlFor="comment">Comment:</label>
+        <label htmlFor="comment" className="label">Comment</label>
         <textarea
           id="comment"
+          className="input"
           value={comment}
           onChange={(e) => setComment(e.target.value)}
         />

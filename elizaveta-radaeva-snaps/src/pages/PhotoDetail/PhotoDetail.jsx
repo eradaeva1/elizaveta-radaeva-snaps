@@ -6,15 +6,6 @@ import CommentForm from "../../components/CommentForm/CommentForm";
 import axios from "axios";
 import "./PhotoDetail.scss";
 import likeOutline from "../../assets/logos/Like_Outline.svg";
-
-const formatDate = (timestamp) => {
-  const date = new Date(timestamp);
-  const day = String(date.getDate()).padStart(2, "0");
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const year = date.getFullYear();
-  return `${month}/${day}/${year}`;
-};
-
 function PhotoDetail() {
   const { photoId } = useParams();
   const [photoDetails, setPhotoDetails] = useState(null);
@@ -61,6 +52,14 @@ function PhotoDetail() {
     navigate("/");
   };
 
+  const formatDate = (timestamp) => {
+    const date = new Date(timestamp);
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = date.getFullYear();
+    return `${month}/${day}/${year}`;
+  };
+
   if (error) {
     return <div>{error}</div>;
   }
@@ -68,6 +67,7 @@ function PhotoDetail() {
   if (loading) {
     return <div>Loading...</div>;
   }
+
   return (
     <>
       <Header />
@@ -93,7 +93,8 @@ function PhotoDetail() {
               </div>
               <div className="photo__detail-info">
                 <p className="photo__detail__likes">
-                  <img src={likeOutline} alt="Like outline" className="like__outline"/> {photoDetails.likes} likes
+                  <img src={likeOutline} alt="Like outline" className="like__outline" />
+                  {photoDetails.likes} likes
                 </p>
                 <p className="photo__detail-date">
                   {formatDate(photoDetails.timestamp)}
@@ -109,10 +110,19 @@ function PhotoDetail() {
         <section className="photo__detail-comments">
           <CommentForm photoId={photoId} />
 
-          <ul>
+          {/* Show the number of comments */}
+          <p className="comments__count">
+            {comments.length} {comments.length === 1 ? 'Comment' : 'Comments'}
+          </p>
+
+          <ul className="comment__list">
             {comments.map((comment, index) => (
-              <li key={index}>
-                <strong>{comment.name}</strong>: {comment.comment}
+              <li className="comment__list-item" key={index}>
+              <p className="comment__list-date">
+                  {formatDate(comment.timestamp)} </p>
+                <p className="comment__list-name">{comment.name}</p>
+                <p className="comment__list-comment">{comment.comment} </p> 
+                
               </li>
             ))}
           </ul>
