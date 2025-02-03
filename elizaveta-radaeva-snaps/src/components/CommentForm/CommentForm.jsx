@@ -5,7 +5,9 @@ import axios from "axios";
 const CommentForm = ({ addComment, photoId }) => {
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
+  const [comments, setComments] = useState([]);
 
+  // Get the base URL from environment variables
   // Get the base URL from environment variables
   const baseUrl = import.meta.env.VITE_APP_URL;
 
@@ -18,53 +20,21 @@ const CommentForm = ({ addComment, photoId }) => {
     }
 
     try {
-   
       const newComment = { name, comment };
 
-    
+      // Post the new comment to the server
       await axios.post(`${baseUrl}/photos/${photoId}/comments`, newComment);
 
-     
-      if (addComment) {
-        addComment(newComment);
-      }
+      // Update the comments list by adding the new comment at the top
+      setComments((prevComments) => [newComment, ...prevComments]);
 
-      const updatedComments = await axios.get(`${baseUrl}/photos/${photoId}/comments`);
-    setComment(updatedComments.data);
-
-
+      // Reset the form fields
       setName("");
       setComment("");
     } catch (err) {
       console.error("Error posting comment", err);
     }
   };
-
-  
-  // const handleCommentSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   if (!name || !comment) {
-  //     alert("Please fill in both fields.");
-  //     return;
-  //   }
-
-  //   try {
-  //     const newComment = { name, comment };
-
-  //     // Send request to the server
-  //     const response = await axios.post(`${baseUrl}/photos/${photoId}/comments`, newComment);
-  //     const savedComment = response.data; // Get the saved comment from the server
-
-  //     // Update comments state
-  //     setComments((prevComments) => [...prevComments, savedComment]);
-
-  //     setName("");
-  //     setComment("");
-  //   } catch (err) {
-  //     console.error("Error posting comment", err);
-  //   }
-  // };
 
   return (
     <form className="comment__form" onSubmit={handleCommentSubmit}>
@@ -88,6 +58,15 @@ const CommentForm = ({ addComment, photoId }) => {
       <button type="submit" className="comment__form-btn">
         Submit
       </button>
+
+      {/* Display the comments below the form, in reverse order */}
+      <div className="comment__form">
+        {comments.map((comment, index) => (
+          <div key={index} className="comment">
+            <p><strong>{comment.name}:</strong> {comment.comment}</p>
+          </div>
+        ))}
+      </div>
     </form>
   );
 };

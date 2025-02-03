@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Header from "../../components/Components/Header";
-import Footer from "../../components/Components/Footer";
-import FilterDrawer from "../../components/Components/FilterDrawer";
-import Hero from "../../components/Components/Hero";
-import PhotoCardsList from "../../components/Components/PhotoCardsList";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
+import FilterDrawer from "../../components/FilterDrawer/FilterDrawer";
+import Hero from "../../components/Hero/Hero";
+import PhotoCardsList from "../../components/PhotoCardList/PhotoCardsList";
 import axios from "axios";
 
 function HomePage() {

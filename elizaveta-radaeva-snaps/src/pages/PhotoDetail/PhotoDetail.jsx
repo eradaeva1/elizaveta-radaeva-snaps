@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Header from "../../components/Components/Header";
-import Footer from "../../components/Components/Footer";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 import CommentForm from "../../components/CommentForm/CommentForm";
 import axios from "axios";
+import "./PhotoDetail.scss";
+import likeOutline from "../../assets/logos/Like_Outline.svg";
 
 const formatDate = (timestamp) => {
   const date = new Date(timestamp);
@@ -69,10 +71,6 @@ function PhotoDetail() {
   return (
     <>
       <Header />
-      <button onClick={handleBackHome} className="back-home-btn">
-        Back to Home
-      </button>
-
       <main className="photo__detail">
         {photoDetails && (
           <div className="photo__detail-content">
@@ -95,7 +93,7 @@ function PhotoDetail() {
               </div>
               <div className="photo__detail-info">
                 <p className="photo__detail__likes">
-                  ♡ {photoDetails.likes} likes
+                  <img src={likeOutline} alt="Like outline" className="like__outline"/> {photoDetails.likes} likes
                 </p>
                 <p className="photo__detail-date">
                   {formatDate(photoDetails.timestamp)}
