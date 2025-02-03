@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import FilterDrawer from "../FilterDrawer/FilterDrawer";
 import arrowLogo from "../../assets/logos/Arrow.svg";
-import "./Header.scss"
+import "./Header.scss";
 
 function Header({ toggleDrawer, isDrawerOpen }) {
-  const location = useLocation(); // Get the current route
+  const location = useLocation();
 
   return (
     <header>
@@ -15,7 +15,6 @@ function Header({ toggleDrawer, isDrawerOpen }) {
         </Link>
         <div className="nav__right">
           {location.pathname === "/" ? (
-            // Show "Filters" button on Homepage
             <button
               className={`nav__button ${
                 isDrawerOpen ? "nav__button--active" : ""
@@ -34,10 +33,9 @@ function Header({ toggleDrawer, isDrawerOpen }) {
               />
             </button>
           ) : (
-            // Show "Back Home" button on PhotoDetail page
             <Link to="/" className="nav__button nav__button--home">
-               <img src={arrowLogo} alt="Arrow logo" className="arrow__logo"/>
-               Home
+              <img src={arrowLogo} alt="Arrow logo" className="arrow__logo" />
+              Home
             </Link>
           )}
         </div>

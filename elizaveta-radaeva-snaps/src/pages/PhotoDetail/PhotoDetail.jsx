@@ -7,8 +7,6 @@ import axios from "axios";
 import "./PhotoDetail.scss";
 import likeOutline from "../../assets/logos/Like_Outline.svg";
 
-
-
 function PhotoDetail() {
   const { photoId } = useParams();
   const [photoDetails, setPhotoDetails] = useState(null);
@@ -96,7 +94,11 @@ function PhotoDetail() {
               </div>
               <div className="photo__detail-info">
                 <p className="photo__detail__likes">
-                  <img src={likeOutline} alt="Like outline" className="like__outline" />
+                  <img
+                    src={likeOutline}
+                    alt="Like outline"
+                    className="like__outline"
+                  />
                   {photoDetails.likes} likes
                 </p>
                 <p className="photo__detail-date">
@@ -113,22 +115,23 @@ function PhotoDetail() {
         <section className="photo__detail-comments">
           <CommentForm photoId={photoId} />
 
-          {/* Show the number of comments */}
           <p className="comments__count">
-            {comments.length} {comments.length === 1 ? 'Comment' : 'Comments'}
+            {comments.length} {comments.length === 1 ? "Comment" : "Comments"}
           </p>
 
-          {/* Render comments in reverse order */}
           <ul className="comment__list">
-            {comments.slice(0).reverse().map((comment, index) => (
-              <li className="comment__list-item" key={index}>
-                <p className="comment__list-name">{comment.name}</p>
-                <p className="comment__list-date">
-                  {formatDate(comment.timestamp)} 
-                </p>
-                <p className="comment__list-comment">{comment.comment}</p> 
-              </li>
-            ))}
+            {comments
+              .slice(0)
+              .reverse()
+              .map((comment, index) => (
+                <li className="comment__list-item" key={index}>
+                  <p className="comment__list-name">{comment.name}</p>
+                  <p className="comment__list-date">
+                    {formatDate(comment.timestamp)}
+                  </p>
+                  <p className="comment__list-comment">{comment.comment}</p>
+                </li>
+              ))}
           </ul>
         </section>
       </main>

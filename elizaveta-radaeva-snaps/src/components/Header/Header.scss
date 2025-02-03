@@ -4,143 +4,95 @@
 @use "../../styles/partials/variables" as *;
 
 .nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background-color: $pistachio;
-    padding: 0 1rem 0rem;
-    position: fixed;
-    z-index: 4;
-    width: 100%;
-    @include tablet {
-      padding: 0 1.5rem;
-    }
-    &__right {
-      display: flex;
-      align-items: center;
-      font-family: "Outfit";
-      font-size: 0.5rem;
-      position: relative;
-    }
-  
-    &__logo {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      font-family: "Newsreader";
-      font-size: 2.2rem;
-      line-height: 2rem;
-      font-weight: 400;
-      color: $black;
-      @include tablet {
-        font-size: 2.5rem;
-        line-height: 2.5rem;
-      }
-    }
-    &__button {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      font-family: "Outfit";
-      font-size: 0.8125rem;
-      line-height: 1.4375rem;
-      font-weight: 500;
-      color: $forest-green;
-      background-color: $pistachio;
-      border: 2.5px solid $forest-green;
-      padding: 0rem 1.5rem;
-      border-radius: 1.25rem;
-  
-      &:focus {
-        outline: none;
-        border: 2px solid $forest-green;
-      }
-  
-      @include tablet {
-        line-height: 1.875rem;
-      }
-    }
-    &__button-icon {
-      margin-left: 0.38rem;
-    }
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: $pistachio;
+  padding: 0 1rem 0rem;
+  position: fixed;
+  z-index: 4;
+  width: 100%;
+  @include tablet {
+    padding: 0 1.5rem;
   }
-  
-  .nav__button--active {
-    background-color: $forest-green;
-    color: $white;
-    text-decoration: none;
-    border: 2px solid $forest-green;
-  }
-  
-  .nav__button-content {
+  &__right {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    background-color: $sage;
-    padding: 5.5rem 1rem 1rem;
-    font-size: 0.8125rem;
+    align-items: center;
     font-family: "Outfit";
-    width: 100%;
-    font-weight: 500;
-    margin-bottom: -5.6rem;
-    @include tablet {
-      padding: 7.3rem 1.5rem 4.5rem;
-    }
-    // @include desktop {
-    //   position: absolute;
-    //   top: 0;
-    //   right: 0;
-    //   width: 20rem;
-    //   height: 100%;
-    // }
-    // &--flex-cont {
-    //   @include desktop {
-    //     display: flex;
-    //     justify-content: flex-start;
-    //     flex-wrap: wrap;
-    //     padding: 2rem 2rem;
-    //     gap: 5px;
-    //   }
-  
-    // }
-  }
-  
-
-  .nav__button--home {
-    border: none;
-    font-size: 1.2rem;
+    font-size: 0.5rem;
+    position: relative;
   }
 
-  .arrow__logo {
-  padding-right: 0.5rem;
-  }
-
-  .filter__title {
-    width: 100%;
+  &__logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: "Newsreader";
+    font-size: 2.2rem;
+    line-height: 2rem;
+    font-weight: 400;
     color: $black;
-  }
-  
-  .filter__container {
     @include tablet {
-      width: 90%;
+      font-size: 2.5rem;
+      line-height: 2.5rem;
     }
   }
-  
-  .filter__tags {
+  &__button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: "Outfit";
+    font-size: 0.8125rem;
+    line-height: 1.4375rem;
+    font-weight: 500;
     color: $forest-green;
-    background-color: $white;
-    border: 0.075rem solid $forest-green;
-    padding: 0.33rem 0.3rem;
-    margin: 0.2rem 0.35rem 0.2rem 0;
-  
-    &--selected {
-      background-color: $forest-green;
-      color: $white;
-      text-decoration: none;
+    background-color: $pistachio;
+    border: 2.5px solid $forest-green;
+    padding: 0rem 1.5rem;
+    border-radius: 1.25rem;
+
+    &:focus {
       outline: none;
+      border: 2px solid $forest-green;
     }
+
     @include tablet {
-      margin: 0.3rem 0.5rem 0.2rem 0;
-      padding: 0.32rem 0.5rem;
+      line-height: 1.875rem;
     }
   }
+  &__button-icon {
+    margin-left: 0.38rem;
+  }
+}
+
+.nav__button--active {
+  background-color: $forest-green;
+  color: $white;
+  text-decoration: none;
+  border: 2px solid $forest-green;
+}
+
+.nav__button-content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: $sage;
+  padding: 5.5rem 1rem 1rem;
+  font-size: 0.8125rem;
+  font-family: "Outfit";
+  width: 100%;
+  font-weight: 500;
+  margin-bottom: -5.6rem;
+  @include tablet {
+    padding: 7.3rem 1.5rem 4.5rem;
+  }
+}
+
+.nav__button--home {
+  border: none;
+  font-size: 1.2rem;
+}
+
+.arrow__logo {
+  padding-right: 0.5rem;
+}

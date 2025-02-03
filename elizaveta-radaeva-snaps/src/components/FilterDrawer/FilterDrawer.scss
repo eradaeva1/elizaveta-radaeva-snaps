@@ -1,0 +1,40 @@
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.filter__title {
+  width: 100%;
+  color: $black;
+}
+
+.filter__container {
+  @include tablet {
+    width: 90%;
+  }
+}
+
+.filter__tags {
+  color: $forest-green;
+  background-color: $white;
+  border: 0.075rem solid $forest-green;
+  padding: 0.33rem 0.3rem;
+  margin: 0.2rem 0.35rem 0.2rem 0;
+
+  &--selected {
+    background-color: $forest-green;
+    color: $white;
+    text-decoration: none;
+    outline: none;
+  }
+
+  &:focus {
+    outline: none;
+    border: 0.075rem solid $forest-green;
+  }
+
+  @include tablet {
+    margin: 0.3rem 0.5rem 0.2rem 0;
+    padding: 0.32rem 0.5rem;
+  }
+}

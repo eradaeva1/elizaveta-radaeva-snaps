@@ -7,8 +7,7 @@ const CommentForm = ({ addComment, photoId }) => {
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
 
-  // Get the base URL from environment variables
-  // Get the base URL from environment variables
+  
   const baseUrl = import.meta.env.VITE_APP_URL;
 
   const handleCommentSubmit = async (e) => {
@@ -22,13 +21,13 @@ const CommentForm = ({ addComment, photoId }) => {
     try {
       const newComment = { name, comment };
 
-      // Post the new comment to the server
+      
       await axios.post(`${baseUrl}/photos/${photoId}/comments`, newComment);
 
-      // Update the comments list by adding the new comment at the top
+     
       setComments((prevComments) => [newComment, ...prevComments]);
 
-      // Reset the form fields
+     
       setName("");
       setComment("");
     } catch (err) {
@@ -39,7 +38,9 @@ const CommentForm = ({ addComment, photoId }) => {
   return (
     <form className="comment__form" onSubmit={handleCommentSubmit}>
       <div className="comment__form-field">
-        <label htmlFor="name" className="label">Name</label>
+        <label htmlFor="name" className="label">
+          Name
+        </label>
         <input
           id="name"
           className="input"
@@ -49,7 +50,9 @@ const CommentForm = ({ addComment, photoId }) => {
         />
       </div>
       <div className="comment__form-field">
-        <label htmlFor="comment" className="label">Comment</label>
+        <label htmlFor="comment" className="label">
+          Comment
+        </label>
         <textarea
           id="comment"
           className="input"
@@ -61,11 +64,13 @@ const CommentForm = ({ addComment, photoId }) => {
         Submit
       </button>
 
-      {/* Display the comments below the form, in reverse order */}
+      
       <div className="comment__form">
         {comments.map((comment, index) => (
           <div key={index} className="comment">
-            <p><strong>{comment.name}:</strong> {comment.comment}</p>
+            <p>
+              <strong>{comment.name}:</strong> {comment.comment}
+            </p>
           </div>
         ))}
       </div>
