@@ -98,11 +98,20 @@
     border-radius: 0.65rem;
     padding: 0.33rem 0.5rem;
     margin: 0 0.3rem;
+
+    
+    
   
     @include tablet {
       line-height: 1.4375rem;
       padding: 0.1rem 0.7rem;
       border-radius: 0.75rem;
       border-radius: 0.45rem;
+    }
+  }
+
+  .photo__card-tag--details {
+    @include tablet {
+      font-size: 2rem;
     }
   }

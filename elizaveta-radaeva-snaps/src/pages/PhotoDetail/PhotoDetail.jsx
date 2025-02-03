@@ -6,6 +6,9 @@ import CommentForm from "../../components/CommentForm/CommentForm";
 import axios from "axios";
 import "./PhotoDetail.scss";
 import likeOutline from "../../assets/logos/Like_Outline.svg";
+
+
+
 function PhotoDetail() {
   const { photoId } = useParams();
   const [photoDetails, setPhotoDetails] = useState(null);
@@ -115,14 +118,15 @@ function PhotoDetail() {
             {comments.length} {comments.length === 1 ? 'Comment' : 'Comments'}
           </p>
 
+          {/* Render comments in reverse order */}
           <ul className="comment__list">
-            {comments.map((comment, index) => (
+            {comments.slice(0).reverse().map((comment, index) => (
               <li className="comment__list-item" key={index}>
-              <p className="comment__list-date">
-                  {formatDate(comment.timestamp)} </p>
                 <p className="comment__list-name">{comment.name}</p>
-                <p className="comment__list-comment">{comment.comment} </p> 
-                
+                <p className="comment__list-date">
+                  {formatDate(comment.timestamp)} 
+                </p>
+                <p className="comment__list-comment">{comment.comment}</p> 
               </li>
             ))}
           </ul>
