@@ -1,10 +1,14 @@
 import { useState } from "react";
-import { postComment } from "../../utils/api";
 import axios from "axios";
+import "./CommentForm.scss";
 
 const CommentForm = ({ addComment, photoId }) => {
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
+  const [comments, setComments] = useState([]);
+
+  
+  const baseUrl = import.meta.env.VITE_APP_URL;
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
@@ -16,12 +20,14 @@ const CommentForm = ({ addComment, photoId }) => {
 
     try {
       const newComment = { name, comment };
-      await postComment(photoId, name, comment);
 
-      if (addComment) {
-        addComment(newComment);
-      }
+      
+      await axios.post(`${baseUrl}/photos/${photoId}/comments`, newComment);
 
+     
+      setComments((prevComments) => [newComment, ...prevComments]);
+
+     
       setName("");
       setComment("");
     } catch (err) {
@@ -32,18 +38,24 @@ const CommentForm = ({ addComment, photoId }) => {
   return (
     <form className="comment__form" onSubmit={handleCommentSubmit}>
       <div className="comment__form-field">
-        <label htmlFor="name">Name:</label>
+        <label htmlFor="name" className="label">
+          Name
+        </label>
         <input
           id="name"
+          className="input"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
       </div>
       <div className="comment__form-field">
-        <label htmlFor="comment">Comment:</label>
+        <label htmlFor="comment" className="label">
+          Comment
+        </label>
         <textarea
           id="comment"
+          className="input"
           value={comment}
           onChange={(e) => setComment(e.target.value)}
         />
@@ -51,6 +63,17 @@ const CommentForm = ({ addComment, photoId }) => {
       <button type="submit" className="comment__form-btn">
         Submit
       </button>
+
+      
+      <div className="comment__form">
+        {comments.map((comment, index) => (
+          <div key={index} className="comment">
+            <p>
+              <strong>{comment.name}:</strong> {comment.comment}
+            </p>
+          </div>
+        ))}
+      </div>
     </form>
   );
 };

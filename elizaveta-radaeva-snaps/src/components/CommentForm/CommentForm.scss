@@ -1,0 +1,44 @@
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.comment__form {
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.75rem;
+  padding-bottom: 0;
+  &-field {
+    padding-top: 1rem;
+  }
+  &-btn {
+    background-color: $forest-green;
+    color: $white;
+    margin-left: auto;
+    margin-top: 1rem;
+    padding: 0.38rem 0.78rem;
+    font-size: 0.8125rem;
+  }
+}
+
+.label,
+.input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-bottom: 0.3rem;
+  @include tablet {
+    font-size: 1rem;
+  }
+}
+.input {
+  outline: none;
+  border: solid $sea-green;
+  border-radius: 0.35rem;
+  padding-bottom: 0.5rem;
+  @include tablet {
+    padding-bottom: 1.2rem;
+  }
+}

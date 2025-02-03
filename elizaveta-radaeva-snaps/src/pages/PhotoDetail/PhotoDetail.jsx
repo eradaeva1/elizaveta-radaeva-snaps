@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { fetchPhotoById, fetchComments, postComment } from "../../utils/api";
-import Header from "../../components/Components/Header";
-import Footer from "../../components/Components/Footer";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 import CommentForm from "../../components/CommentForm/CommentForm";
-
-const formatDate = (timestamp) => {
-  const date = new Date(timestamp);
-  const day = String(date.getDate()).padStart(2, "0");
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const year = date.getFullYear();
-  return `${month}/${day}/${year}`;
-};
+import axios from "axios";
+import "./PhotoDetail.scss";
+import likeOutline from "../../assets/logos/Like_Outline.svg";
 
 function PhotoDetail() {
   const { photoId } = useParams();
@@ -22,46 +16,62 @@ function PhotoDetail() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
+  const baseUrl = import.meta.env.VITE_APP_URL;
+
   useEffect(() => {
     const getPhotoDetails = async () => {
       try {
-        const details = await fetchPhotoById(photoId);
-
-        setPhotoDetails(details);
+        const response = await axios.get(`${baseUrl}/photos/${photoId}`);
+        setPhotoDetails(response.data);
       } catch (err) {
         setError("Failed to load photo details.");
         console.error(err);
       }
     };
+
     const getComments = async () => {
       try {
-        const comments = await fetchComments(photoId);
-        setComments(comments);
+        const response = await axios.get(
+          `${baseUrl}/photos/${photoId}/comments`
+        );
+        setComments(response.data);
       } catch (err) {
-        setError("Failed to load photo details.");
+        setError("Failed to load comments.");
         console.error(err);
       }
     };
 
-    getPhotoDetails();
-    getComments();
-  }, [photoId]);
+    const fetchData = async () => {
+      await Promise.all([getPhotoDetails(), getComments()]);
+      setLoading(false);
+    };
+
+    fetchData();
+  }, []);
 
   const handleBackHome = () => {
     navigate("/");
+  };
+
+  const formatDate = (timestamp) => {
+    const date = new Date(timestamp);
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = date.getFullYear();
+    return `${month}/${day}/${year}`;
   };
 
   if (error) {
     return <div>{error}</div>;
   }
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <Header />
-      <button onClick={handleBackHome} className="back-home-btn">
-        Back to Home
-      </button>
-
       <main className="photo__detail">
         {photoDetails && (
           <div className="photo__detail-content">
@@ -84,7 +94,12 @@ function PhotoDetail() {
               </div>
               <div className="photo__detail-info">
                 <p className="photo__detail__likes">
-                  ♡ {photoDetails.likes} likes
+                  <img
+                    src={likeOutline}
+                    alt="Like outline"
+                    className="like__outline"
+                  />
+                  {photoDetails.likes} likes
                 </p>
                 <p className="photo__detail-date">
                   {formatDate(photoDetails.timestamp)}
@@ -100,12 +115,23 @@ function PhotoDetail() {
         <section className="photo__detail-comments">
           <CommentForm photoId={photoId} />
 
-          <ul>
-            {comments.map((comment, index) => (
-              <li key={index}>
-                <strong>{comment.name}</strong>: {comment.comment}
-              </li>
-            ))}
+          <p className="comments__count">
+            {comments.length} {comments.length === 1 ? "Comment" : "Comments"}
+          </p>
+
+          <ul className="comment__list">
+            {comments
+              .slice(0)
+              .reverse()
+              .map((comment, index) => (
+                <li className="comment__list-item" key={index}>
+                  <p className="comment__list-name">{comment.name}</p>
+                  <p className="comment__list-date">
+                    {formatDate(comment.timestamp)}
+                  </p>
+                  <p className="comment__list-comment">{comment.comment}</p>
+                </li>
+              ))}
           </ul>
         </section>
       </main>

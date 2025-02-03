@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { fetchPhotos, fetchTags } from "../../utils/api";
-import Header from "../../components/Components/Header";
-import Footer from "../../components/Components/Footer";
-import FilterDrawer from "../../components/Components/FilterDrawer";
-import Hero from "../../components/Components/Hero";
-import PhotoCardsList from "../../components/Components/PhotoCardsList";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
+import FilterDrawer from "../../components/FilterDrawer/FilterDrawer";
+import Hero from "../../components/Hero/Hero";
+import PhotoCardsList from "../../components/PhotoCardList/PhotoCardsList";
+import axios from "axios";
 
 function HomePage() {
   const [photos, setPhotos] = useState([]);
@@ -18,15 +18,16 @@ function HomePage() {
 
   const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen);
 
+  const baseUrl = import.meta.env.VITE_APP_URL;
+
   useEffect(() => {
     const getPhotos = async () => {
       try {
         setPhotosLoading(true);
-        const data = await fetchPhotos();
-        console.log("Fetched Photos:", data);
-        setPhotos(data);
+        const response = await axios.get(`${baseUrl}/photos`);
+        setPhotos(response.data);
       } catch (err) {
-        setError("Error fetching photos. Please try again later.");
+        setPhotoError("Error fetching photos.");
         console.error("Fetch Photos Error:", err);
       } finally {
         setPhotosLoading(false);
@@ -36,8 +37,8 @@ function HomePage() {
     const getTags = async () => {
       try {
         setTagsLoading(true);
-        const response = await fetchTags();
-        setTags(response);
+        const response = await axios.get(`${baseUrl}/tags`); // Adjust URL if needed
+        setTags(response.data);
       } catch (err) {
         setTagError("Error fetching tags. Please try again later.");
         console.error(err);
@@ -48,7 +49,7 @@ function HomePage() {
 
     getPhotos();
     getTags();
-  }, [fetchPhotos, fetchTags]);
+  }, []);
 
   if (photoError || tagError) {
     return <div>{photoError || tagError}</div>;

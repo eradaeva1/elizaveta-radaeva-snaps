@@ -1,3 +1,9 @@
+import facebookLogo from "../../assets/logos/Facebook.svg";
+import twitterLogo from "../../assets/logos/X_twitter.svg";
+import instagramLogo from "../../assets/logos/Instagram.svg";
+import pinterestLogo from "../../assets/logos/Pinterest.svg";
+import "./Footer.scss";
+
 function Footer() {
   return (
     <section className="footer">
@@ -9,7 +15,7 @@ function Footer() {
               For photographers
             </a>
             <a href="#" className="footer__link">
-              Hire Talent
+              Hire talent
             </a>
             <a href="#" className="footer__link">
               Inspiration
@@ -31,37 +37,38 @@ function Footer() {
         <article className="footer__socials">
           <a href="#" className="footer__social-link">
             <img
-              src="src\assets\logos\Facebook.svg"
+              src={facebookLogo}
               alt="Facebook-logo"
               className="footer__social-facebook"
             />
           </a>
           <a href="#" className="footer__social-link">
             <img
-              className="footer__social-twitter"
-              src="src\assets\logos\X_twitter.svg"
+              src={twitterLogo}
               alt="X-twitter-logo"
+              className="footer__social-twitter"
             />
           </a>
           <a href="#" className="footer__social-link">
             <img
-              src="src\assets\logos\Instagram.svg"
+              src={instagramLogo}
               alt="Instagram-logo"
               className="footer__social-instagram"
             />
           </a>
           <a href="#" className="footer__social-link">
             <img
-              src="src\assets\logos\Pinterest.svg"
+              src={pinterestLogo}
               alt="Pinterest-logo"
               className="footer__social-pinterest"
             />
           </a>
         </article>
       </div>
+
       <article className="footer__rights">
         <a href="#" className="footer__rights-text">
-          © 2024 Snaps .{" "}
+          © 2024 Snaps .
         </a>
         <a href="#" className="footer__rights-text">
           Terms

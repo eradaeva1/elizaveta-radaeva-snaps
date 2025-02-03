@@ -1,0 +1,54 @@
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.hero {
+  background-color: $pistachio;
+  padding: 1rem 1rem;
+  margin-top: 5.6rem;
+  @include tablet {
+    padding: 2.8rem 1.5rem;
+  }
+
+  &__title {
+    margin-top: 0;
+    padding-top: 1rem;
+    font-size: 0.81rem;
+    line-height: 2rem;
+    font-weight: 500;
+    color: $black;
+
+    @include tablet {
+      font-size: 1rem;
+      line-height: 0.9375rem;
+      font-weight: 400;
+      padding-bottom: 1rem;
+    }
+  }
+
+  &__title-text {
+    font-family: "Newsreader";
+    font-weight: 300;
+    font-size: 1.625rem;
+    line-height: 2.375rem;
+    color: $black;
+    margin: 0;
+    font-style: normal;
+    &--special {
+      font-style: italic;
+      font-weight: 300;
+    }
+    @include tablet {
+      font-size: 3.25rem;
+      line-height: 4.125rem;
+      padding-bottom: 0;
+      width: 100%;
+      font-size: 2.4375rem;
+      line-height: 4.125rem;
+    }
+    @include desktop {
+      width: 45%;
+    }
+  }
+}
