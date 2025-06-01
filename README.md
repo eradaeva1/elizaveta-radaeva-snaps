@@ -19,6 +19,11 @@
 - ⚡ **Vite** for fast dev builds
 - 🌐 **Axios** for API communication
 - 🟨 **JavaScript (ES6+)** for component logic and interactivity
+- - 📁 **Folder Structure**
+  - `components/` – UI components
+  - `pages/` – Route-level views like `HomePage` and `PhotoDetail`
+  - `styles/partials/` – SCSS partials for maintainable styles
+  - `assets/` – Fonts and logos
 
 ### Backend (separate repo):
 - 🧠 **Node.js + Express**
@@ -64,20 +69,7 @@ Make sure the Snaps API is running locally:
 npm install
 npm run dev
 
-📁 Project Structure
-pgsql
-Copy
-Edit
-├── public/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   └── main.jsx
-├── .env
-├── index.html
-└── package.json
-📌 Future Enhancements
-🔐 Authentication & Authorization
+
 
 🖼 Image upload to cloud storage
 
